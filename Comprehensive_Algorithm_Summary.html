@@ -1,0 +1,680 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Comprehensive Algorithm Summary</title>
+    <style>
+        @media print {
+            body { margin: 1cm; }
+        }
+        body {
+            font-family: 'Segoe UI', Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        h1 {
+            color: #2c3e50;
+            border-bottom: 3px solid #3498db;
+            padding-bottom: 10px;
+            margin-top: 30px;
+            page-break-after: avoid;
+        }
+        h2 {
+            color: #34495e;
+            border-bottom: 2px solid #95a5a6;
+            padding-bottom: 8px;
+            margin-top: 25px;
+            page-break-after: avoid;
+        }
+        h3 {
+            color: #7f8c8d;
+            margin-top: 20px;
+            page-break-after: avoid;
+        }
+        table {
+            border-collapse: collapse;
+            width: 100%;
+            margin: 20px 0;
+            font-size: 13px;
+            page-break-inside: avoid;
+        }
+        th {
+            background-color: #3498db;
+            color: white;
+            padding: 12px;
+            text-align: left;
+            font-weight: bold;
+        }
+        td {
+            border: 1px solid #ddd;
+            padding: 10px;
+        }
+        tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+        code {
+            background-color: #f4f4f4;
+            padding: 2px 6px;
+            border-radius: 3px;
+            font-family: 'Consolas', 'Monaco', monospace;
+            font-size: 0.9em;
+        }
+        pre {
+            background-color: #f4f4f4;
+            padding: 15px;
+            border-radius: 5px;
+            overflow-x: auto;
+            border-left: 4px solid #3498db;
+            page-break-inside: avoid;
+        }
+        pre code {
+            background-color: transparent;
+            padding: 0;
+        }
+        ul, ol {
+            margin: 10px 0;
+            padding-left: 30px;
+        }
+        li {
+            margin: 5px 0;
+        }
+        hr {
+            border: none;
+            border-top: 2px solid #ecf0f1;
+            margin: 30px 0;
+        }
+    </style>
+</head>
+<body>
+<h1>Comprehensive Algorithm Summary</h1>
+<h2>A Complete Guide to Algorithm Design Techniques</h2>
+<p>This document provides a comprehensive summary of various algorithm design techniques covered in group presentations. Each section explains the concept, provides examples, and discusses advantages and disadvantages.</p>
+<hr />
+<h2>Table of Contents</h2>
+<ol>
+<li><a href="#1-brute-force-algorithm">Brute Force Algorithm</a></li>
+<li><a href="#2-divide-and-conquer-algorithm">Divide and Conquer Algorithm</a></li>
+<li><a href="#3-dynamic-programming-algorithm">Dynamic Programming Algorithm</a></li>
+<li><a href="#4-hashing-algorithms">Hashing Algorithms</a></li>
+<li><a href="#5-randomized-algorithms">Randomized Algorithms</a></li>
+<li><a href="#6-recursive-algorithms">Recursive Algorithms</a></li>
+<li><a href="#7-sorting-algorithms">Sorting Algorithms</a></li>
+<li><a href="#8-greedy-algorithms">Greedy Algorithms</a></li>
+</ol>
+<hr />
+<h2>1. Brute Force Algorithm</h2>
+<h3>Definition</h3>
+<p>A <strong>Brute Force Algorithm</strong> is a simple way to solve problems by trying every possible option until you find the correct answer.</p>
+<p><strong>In simple words:</strong>
+- It checks everything one by one
+- Works well for small problems
+- Takes too much time for big problems</p>
+<h3>Example</h3>
+<p>If you have a 4-digit password or lock (like <code>1234</code>), brute force tries:
+- <code>0000</code>, <code>0001</code>, <code>0002</code>, <code>0003</code>, <code>0004</code> ... until it reaches <code>1234</code> or the correct password</p>
+<h3>Advantages (Pros)</h3>
+<ul>
+<li><strong>Always finds answer</strong>: Tries everything, so it's 100% correct</li>
+<li><strong>Very easy to code</strong>: No smart tricks, just simple loops</li>
+<li><strong>Works on any problem</strong>: No need to know special rules</li>
+<li><strong>Best for small tasks</strong>: Fast when options are few (e.g., 3-digit PIN)</li>
+</ul>
+<h3>Disadvantages (Cons)</h3>
+<ul>
+<li><strong>Super slow</strong>: Checks everything</li>
+<li><strong>Bad for big problems</strong>: Takes forever on long passwords</li>
+<li><strong>Uses too much power</strong>: Drains battery &amp; computer memory</li>
+<li><strong>Not real-life useful</strong>: No one waits years for an answer</li>
+</ul>
+<h3>Conclusion</h3>
+<p>Brute Force is simple, sure but slow. Use it to <strong>learn</strong>, <strong>test</strong>, or <strong>solve tiny problems</strong>, and avoid it when speed or size matters.</p>
+<hr />
+<h2>2. Divide and Conquer Algorithm</h2>
+<h3>Definition</h3>
+<p><strong>Divide and Conquer Algorithm</strong> is a problem-solving technique that works by:
+1. <strong>Dividing</strong> the main problem into smaller subproblems
+2. <strong>Conquering</strong> each subproblem individually
+3. <strong>Merging</strong> the solutions to solve the original problem</p>
+<p><strong>Motto</strong>: "Chop it, Solve it, Merge it"</p>
+<h3>Simple Example</h3>
+<p><strong>Problem</strong>: Feed 8 people
+1. <strong>SPLIT</strong> → Make 2 pizzas (4 people each)
+2. <strong>SOLVE</strong> → Bake each pizza
+3. <strong>MERGE</strong> → Serve both pizzas
+4. <strong>Done!</strong> Big problem solved by handling small pieces</p>
+<h3>Key Characteristics</h3>
+<ol>
+<li><strong>Dividing the Problem</strong>: Break the problem into smaller, more manageable subproblems recursively</li>
+<li><strong>Independence of Subproblems</strong>: Each subproblem should be independent, allowing for parallel processing</li>
+<li><strong>Conquering Each Subproblem</strong>: Solve subproblems individually using the same approach recursively</li>
+<li><strong>Combining Solutions</strong>: Merge solutions efficiently to obtain the final answer</li>
+</ol>
+<h3>Real-Life Applications</h3>
+<table>
+<thead>
+<tr>
+<th>Area</th>
+<th>Real-Life Application</th>
+<th>How Divide &amp; Conquer Helps</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Searching data</strong></td>
+<td>Google Search, File Search, Contacts Lookup</td>
+<td>Uses Binary Search logic to quickly find results from sorted or indexed data</td>
+</tr>
+<tr>
+<td><strong>Sorting data</strong></td>
+<td>Contacts app, E-commerce sorting, Playlists sorting</td>
+<td>Uses Merge Sort or Quick Sort to arrange data efficiently</td>
+</tr>
+<tr>
+<td><strong>Databases</strong></td>
+<td>SQL query optimization, indexing</td>
+<td>Divides huge datasets into smaller chunks to speed up searching and joining</td>
+</tr>
+<tr>
+<td><strong>Games &amp; Graphics</strong></td>
+<td>Computer graphics, collision detection, game maps</td>
+<td>Spatial partitioning algorithms (Quad-trees, Oct-trees) handle large 3D spaces efficiently</td>
+</tr>
+<tr>
+<td><strong>Image Processing</strong></td>
+<td>Image compression (JPEG), pattern recognition</td>
+<td>Images are divided into smaller blocks for easier analysis</td>
+</tr>
+<tr>
+<td><strong>Internet Networks</strong></td>
+<td>Routing and load balancing</td>
+<td>Large networks are divided into smaller subnetworks</td>
+</tr>
+<tr>
+<td><strong>Cybersecurity</strong></td>
+<td>Data encryption, hashing algorithms</td>
+<td>Encryption methods divide data into blocks for speed and security</td>
+</tr>
+</tbody>
+</table>
+<h3>Advantages vs Disadvantages</h3>
+<table>
+<thead>
+<tr>
+<th><strong>Advantages</strong></th>
+<th><strong>Disadvantages</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Solves hard problems by breaking them into smaller parts</td>
+<td>Extra time and effort to split and combine parts</td>
+</tr>
+<tr>
+<td>Faster algorithms (e.g., Quick Sort, Merge Sort)</td>
+<td>Can be complicated if subproblems depend on each other</td>
+</tr>
+<tr>
+<td>Can run subproblems at the same time (parallel processing)</td>
+<td>Some problems are hard to divide</td>
+</tr>
+<tr>
+<td>Uses memory efficiently (small parts fit in cache)</td>
+<td>Large problems may need lots of memory</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2>3. Dynamic Programming Algorithm</h2>
+<h3>Definition</h3>
+<p><strong>Dynamic Programming (DP)</strong> is a method used to make algorithms faster by avoiding repeated calculations. It works by:
+1. Breaking a problem into smaller, overlapping subproblems
+2. Solving each subproblem once
+3. Storing (memorizing) the results
+4. Reusing stored results when needed</p>
+<p>This changes slow recursive solutions into much faster ones.</p>
+<h3>Why Use Dynamic Programming?</h3>
+<ul>
+<li>To avoid repeated calculations in recursive solutions</li>
+<li>To save computation time and memory</li>
+<li>To convert exponential-time problems into polynomial-time problems</li>
+</ul>
+<h3>How It Works</h3>
+<ol>
+<li>Break down the problem into smaller subproblems</li>
+<li>Solve each subproblem once</li>
+<li>Store the results (in an array, matrix, or dictionary)</li>
+<li>Reuse stored results when needed</li>
+</ol>
+<h3>Common Examples of DP Algorithms</h3>
+<ul>
+<li><strong>Fibonacci Numbers</strong></li>
+<li><strong>Longest Common Subsequence (LCS)</strong></li>
+<li><strong>Knapsack Problem</strong></li>
+<li><strong>Edit Distance</strong></li>
+<li><strong>Bellman-Ford Shortest Path</strong></li>
+<li><strong>Floyd-Warshall Algorithm</strong></li>
+<li><strong>Matrix Chain Multiplication</strong></li>
+</ul>
+<h3>Problem Categories</h3>
+<h4>Basic Problems</h4>
+<ol>
+<li><strong>Fibonacci Numbers</strong> – Find the nth number in the Fibonacci sequence</li>
+<li><strong>Tribonacci Numbers</strong> – Each number is the sum of the previous three</li>
+<li><strong>Lucas Numbers</strong> – Like Fibonacci, but starts with 2 and 1</li>
+<li><strong>Climbing Stairs</strong> – Count ways to reach the top taking 1 or 2 steps at a time</li>
+<li><strong>Climbing Stairs with 3 Moves</strong> – Taking 1, 2, or 3 steps</li>
+</ol>
+<h4>Easy Problems</h4>
+<ol>
+<li><strong>House Robber</strong> – Max money without robbing two adjacent houses</li>
+<li><strong>Min Cost Path</strong> – Find the path with smallest sum in a grid</li>
+<li><strong>Decode Ways</strong> – Count how many ways a numeric string can be decoded</li>
+<li><strong>Subset Sum Problem</strong> – Check if a subset with a given sum exists</li>
+<li><strong>Coin Change</strong> – Count ways to make a certain amount with given coins</li>
+</ol>
+<h4>Medium Problems</h4>
+<ol>
+<li><strong>Water Overflow</strong> – Find how much water a glass holds in a pyramid</li>
+<li><strong>Longest Common Subsequence (LCS)</strong> – Longest sequence common to two strings</li>
+<li><strong>Longest Increasing Subsequence (LIS)</strong> – Longest sequence where elements increase</li>
+<li><strong>Edit Distance</strong> – Minimum changes to turn one string into another</li>
+<li><strong>Largest Divisible Subset</strong> – Largest subset where every pair is divisible</li>
+</ol>
+<h3>Advanced Concepts</h3>
+<ol>
+<li><strong>Bitmasking and Dynamic Programming</strong></li>
+<li>Uses binary numbers (bitmasks) to represent subsets efficiently</li>
+<li>Each bit shows whether an item is included or not</li>
+<li>
+<p>Helps solve problems involving combinations or subsets</p>
+</li>
+<li>
+<p><strong>Digit DP</strong></p>
+</li>
+<li>Used for counting numbers that satisfy certain properties within a range</li>
+<li>
+<p>Processes numbers digit by digit</p>
+</li>
+<li>
+<p><strong>Sum over Subsets</strong></p>
+</li>
+<li>Technique to calculate values for all subsets efficiently</li>
+<li>Updates sums using results of smaller subsets</li>
+</ol>
+<h3>Role of Recursion in DP</h3>
+<p>Recursion is the foundation of Dynamic Programming:
+- Helps break a big problem into smaller subproblems
+- Defines the structure of the problem
+- DP optimizes recursion by storing and reusing results</p>
+<h3>Advantages</h3>
+<ul>
+<li>✅ Faster execution</li>
+<li>✅ Avoids repeated computation</li>
+<li>✅ Simplifies complex recursive problems</li>
+<li>✅ Widely used in real-world applications (AI, networking, finance)</li>
+</ul>
+<h3>Disadvantages</h3>
+<ul>
+<li>❌ Needs extra memory to store results</li>
+<li>❌ Not suitable for problems without overlapping subproblems</li>
+<li>❌ Requires identifying subproblems carefully</li>
+</ul>
+<hr />
+<h2>4. Hashing Algorithms</h2>
+<h3>Definition</h3>
+<p>A <strong>Hashing Algorithm</strong> is a function that converts any input data into a fixed-length code called a <strong>hash</strong> or <strong>digest</strong>.</p>
+<p><strong>Key Properties:</strong>
+- Works like a digital fingerprint for data
+- Same input always gives same output
+- Impossible to reverse-engineer back to original data</p>
+<h3>How Hashing Works</h3>
+<ol>
+<li><strong>Create the message</strong> – A user determines what should be hashed</li>
+<li><strong>Choose the type</strong> – Select from dozens of hashing algorithms</li>
+<li><strong>Enter the message</strong> – Input the message into a computer running the algorithm</li>
+<li><strong>Store or share</strong> – Send the hash (message digest) or save it</li>
+</ol>
+<h3>Examples</h3>
+<p><strong>MD5:</strong></p>
+<pre><code>72b003ba1a806c3f94026568ad5c5933
+</code></pre>
+<p><strong>SHA-256:</strong></p>
+<pre><code>f6bf870a2a5bb6d26ddbeda8e903f38867f72978a36f89bfae896776777d50af
+</code></pre>
+<h3>Advantages (Pros)</h3>
+<ul>
+<li><strong>Fast computation</strong>: Generate outputs very quickly</li>
+<li><strong>Deterministic</strong>: Same input always produces the same hash (reliable for verification)</li>
+<li><strong>Irreversible (One-way)</strong>: Cannot get original data from hash (protects sensitive data like passwords)</li>
+</ul>
+<h3>Disadvantages (Cons)</h3>
+<ul>
+<li><strong>Cannot reverse to original data</strong>: Useful for security, but a limitation if you need the original data back</li>
+<li><strong>Vulnerable to brute-force and rainbow table attacks</strong>: If passwords aren't "salted," attackers can precompute hashes</li>
+<li><strong>Not suitable for encryption</strong>: Hashing is one-way; use encryption if you need to recover original data</li>
+</ul>
+<h3>Summary</h3>
+<p>Hashing algorithms convert any input into a fixed-length code, acting like a digital fingerprint. They are deterministic, fast, and irreversible, making them useful for data integrity and password protection. While secure, hashing cannot be reversed and is vulnerable to attacks if not properly salted.</p>
+<hr />
+<h2>5. Randomized Algorithms</h2>
+<h3>Definition</h3>
+<p><strong>Randomized Algorithms</strong> are algorithms that use "chance" or "random choices" (like rolling dice) during their execution to guide their process.</p>
+<p><strong>Simple Explanation:</strong> They don't follow a fixed script; they make some decisions randomly as they run.</p>
+<h3>Why Use Them? (Advantages)</h3>
+<ul>
+<li><strong>Avoids Bad Luck</strong>: Prevents specific inputs from forcing the algorithm into its slowest mode</li>
+<li><strong>Faster in Reality</strong>: Often run quicker on average than complex deterministic alternatives</li>
+<li><strong>Simpler Code</strong>: The logic can be much easier to write and understand</li>
+</ul>
+<h3>Two Main Types</h3>
+<h4>A. Las Vegas Algorithms</h4>
+<ul>
+<li><strong>Guarantee</strong>: Always find the correct answer</li>
+<li><strong>The Random Part</strong>: The time it takes varies randomly</li>
+<li><strong>Example</strong>: Randomized Quick Sort (always sorts correctly; time varies)</li>
+</ul>
+<h4>B. Monte Carlo Algorithms</h4>
+<ul>
+<li><strong>Guarantee</strong>: Finish within a set time limit</li>
+<li><strong>The Random Part</strong>: The answer might be wrong with a small chance</li>
+<li><strong>Example</strong>: Testing if a number is prime (usually right, but maybe wrong sometimes)</li>
+</ul>
+<h3>Key Example: Randomized Quick Sort</h3>
+<ul>
+<li><strong>The Problem</strong>: Standard version can be slow if input data is already sorted</li>
+<li><strong>The Random Solution</strong>: The algorithm picks the "pivot" point randomly every time</li>
+<li><strong>Benefit</strong>: Makes it almost impossible to hit the slow "worst case" repeatedly; fast on average for all inputs</li>
+</ul>
+<h3>Where Are They Used?</h3>
+<ul>
+<li><strong>Data Sorting</strong>: In efficient sorting algorithms like Quick Sort</li>
+<li><strong>Security (Cryptography)</strong>: Key algorithms for secure communication rely on generating and testing large random numbers</li>
+<li><strong>Data Science &amp; Machine Learning</strong>: Creating fast algorithms for analyzing massive datasets</li>
+<li><strong>Computer Networking</strong>: Managing traffic and preventing collisions when many devices access a network</li>
+<li><strong>Estimations</strong>: Quickly estimate complex properties of data or shapes</li>
+</ul>
+<hr />
+<h2>6. Recursive Algorithms</h2>
+<h3>Definition</h3>
+<p><strong>Recursion</strong> is a technique used in computer science to solve big problems by breaking them into smaller, similar problems. The process in which a function calls itself directly or indirectly is called recursion.</p>
+<h3>Types of Recursion</h3>
+<ol>
+<li><strong>Direct Recursion</strong>: The method calls itself directly</li>
+<li>
+<p>Example: Factorial implementation</p>
+</li>
+<li>
+<p><strong>Indirect Recursion</strong>: One method (A) calls another method (B), which then calls method A</p>
+</li>
+<li>
+<p>Involves two or more methods creating a circular call sequence</p>
+</li>
+<li>
+<p><strong>Head Recursion</strong>: The recursive call is made at the beginning of the method</p>
+</li>
+<li>
+<p><strong>Tail Recursion</strong>: The recursive call is the last statement executed by the function</p>
+</li>
+<li>Nothing is left to execute after the recursion call</li>
+</ol>
+<h3>Parts of a Recursive Algorithm</h3>
+<h4>1. Base Case</h4>
+<ul>
+<li><strong>Purpose</strong>: To prevent infinite loops (infinite recursion)</li>
+<li><strong>Action</strong>: When reached, the function returns a value without calling itself again</li>
+<li><strong>Example</strong>: In factorial calculation, the base case is <code>0! = 1</code></li>
+</ul>
+<h4>2. Recursive Case</h4>
+<ul>
+<li><strong>Purpose</strong>: To break down the larger problem into manageable subproblems</li>
+<li><strong>Action</strong>: Must modify the input to move the problem closer to the base case</li>
+<li><strong>Example</strong>: In factorial calculation (<code>n!</code>), the recursive case is <code>n × (n-1)!</code></li>
+</ul>
+<h3>When to Use Recursion</h3>
+<p>Recursion should be used when:
+- The problem can be broken down into smaller subproblems that can be solved recursively
+- The problem naturally fits a recursive structure (like trees, graphs, sorting)</p>
+<h3>Example in JavaScript</h3>
+<pre><code class="language-javascript">function factorial(n) {
+    let ans = 1;
+    for (let i = 2; i &lt;= n; i++) {
+        // calculating the factorial
+        ans = ans * i;
+    }
+    return ans;
+}
+
+// Driver method
+let num = 5;
+console.log(factorial(5));
+</code></pre>
+<h3>Advantages vs Disadvantages</h3>
+<table>
+<thead>
+<tr>
+<th><strong>Pros (Advantages)</strong></th>
+<th><strong>Cons (Disadvantages)</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Makes code simpler and easier to understand</td>
+<td>Can cause stack overflow if recursion goes too deep</td>
+</tr>
+<tr>
+<td>Reduces code length compared to loops</td>
+<td>Slower performance due to multiple function calls</td>
+</tr>
+<tr>
+<td>Ideal for problems that naturally fit recursion (trees, graphs, sorting)</td>
+<td>Uses more memory (stack space for each call)</td>
+</tr>
+<tr>
+<td>Helps solve complex problems easily by dividing them</td>
+<td>Harder to debug and trace compared to loops</td>
+</tr>
+<tr>
+<td>Provides cleaner and more elegant solutions for mathematical formulas</td>
+<td>Requires a well-defined base case to avoid infinite recursion</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2>7. Sorting Algorithms</h2>
+<h3>Definition</h3>
+<p>A <strong>Sorting Algorithm</strong> is used to rearrange a given array or list of elements in an order.</p>
+<p><strong>Example:</strong>
+- Given array: <code>[13, 24, 6, 2]</code>
+- After sorting in <strong>increasing order</strong>: <code>[2, 6, 13, 24]</code>
+- After sorting in <strong>decreasing order</strong>: <code>[24, 13, 6, 2]</code></p>
+<h3>Types of Sorting Algorithms</h3>
+<h4>1. Comparison-Based Sorting</h4>
+<p>Sorts elements by using operators like greater than or less than.
+- Works for any data type (numbers, strings, objects)
+- <strong>Examples</strong>: Selection Sort, Quick Sort, Cycle Sort</p>
+<h4>2. Non-Comparison Sorting</h4>
+<p>Don't directly compare elements but use properties like value or position.
+- Uses digit values, position, or counting
+- <strong>Examples</strong>: Counting Sort, Bucket Sort</p>
+<h4>3. Hybrid Sorting Algorithms</h4>
+<p>Combines two or more sorting techniques for better efficiency.
+- Often adaptive for real-world data
+- <strong>Examples</strong>:
+  - <strong>IntroSort</strong> (Quick Sort + Heap Sort + Insertion Sort)
+  - <strong>TimSort</strong> (Merge Sort + Insertion Sort)</p>
+<h3>Advantages and Disadvantages</h3>
+<h4>Advantages</h4>
+<ul>
+<li><strong>Fast searching</strong>: Once data is sorted, finding items becomes quicker</li>
+<li><strong>Organized data</strong>: Makes lists easier to read, understand, and manage</li>
+<li><strong>Reduces errors</strong>: Organized data reduces mistakes when analyzing and using it</li>
+</ul>
+<h4>Disadvantages</h4>
+<ul>
+<li><strong>Time consuming</strong>: Some sorting methods take a long time for big datasets</li>
+<li><strong>Uses extra memory</strong>: Certain algorithms need more memory to sort data</li>
+<li><strong>Data changes</strong>: If data changes frequently, re-sorting may be needed often</li>
+</ul>
+<hr />
+<h2>8. Greedy Algorithms</h2>
+<h3>Definition</h3>
+<p><strong>Greedy Algorithms</strong> are a class of algorithms that make locally optimal choices at each step with the hope of finding a global optimum solution.</p>
+<p><strong>Key Principle:</strong> At every step of the algorithm, we make a choice that looks the best at the moment.</p>
+<h3>How It Works</h3>
+<ul>
+<li>Make the choice that appears best at the current moment</li>
+<li>Sometimes sort the array to always get the next optimal choice quickly</li>
+<li>Sometimes use a priority queue to get the next optimal item</li>
+</ul>
+<h3>Example 1: Fractional Knapsack</h3>
+<h4>Problem Statement</h4>
+<p>Given items with values and weights, and a knapsack with limited capacity, maximize the total value.</p>
+<p><strong>Input:</strong></p>
+<pre><code>val[] = [60, 100, 120]
+wt[] = [10, 20, 30]
+capacity = 50
+</code></pre>
+<p><strong>Output:</strong> <code>240</code></p>
+<p><strong>Explanation:</strong> Take items of weight 10kg and 20kg, and 2/3 fraction of 30kg.
+Total value = 60 + 100 + (2/3) × 120 = 240</p>
+<h4>Why Naive Approaches Fail</h4>
+<p><strong>Case 1: Picking items with smaller weights first</strong></p>
+<pre><code>val[] = [10, 10, 10, 100]
+wt[] = [10, 10, 10, 30]
+capacity = 30
+</code></pre>
+<p>This would pick the three 10kg items and miss the 100-value item.</p>
+<p><strong>Case 2: Picking items with larger value first</strong></p>
+<pre><code>val[] = [10, 10, 10, 20]
+wt[] = [10, 10, 10, 30]
+capacity = 30
+</code></pre>
+<p>This would pick the 20-value item first, which is not optimal.</p>
+<h4>Steps to Solve</h4>
+<ol>
+<li>Calculate the ratio (value/weight) for each item</li>
+<li>Sort all items in decreasing order of the ratio</li>
+<li>Iterate through items:</li>
+<li>If the current item fully fits, add its full value and decrease capacity</li>
+<li>Otherwise, take the fractional part that fits and add proportional value</li>
+<li>Stop once the capacity becomes zero</li>
+</ol>
+<h3>Example 2: Dijkstra's Algorithm</h3>
+<p><strong>Purpose:</strong> Find shortest paths from a source to all vertices in a graph.</p>
+<p><strong>Input:</strong></p>
+<pre><code>src = 0
+V = 5
+edges[][] = [[0, 1, 4], [0, 2, 8], [1, 4, 6], [2, 3, 2], [3, 4, 10]]
+</code></pre>
+<p><strong>Output:</strong></p>
+<pre><code>0 4 8 10 10
+</code></pre>
+<p>(Shortest distances from source vertex 0 to all other vertices)</p>
+<hr />
+<h2>Summary and Comparison</h2>
+<table>
+<thead>
+<tr>
+<th>Algorithm Type</th>
+<th>Best For</th>
+<th>Time Complexity</th>
+<th>Space Complexity</th>
+<th>Key Advantage</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Brute Force</strong></td>
+<td>Small problems, learning</td>
+<td>Exponential</td>
+<td>Low</td>
+<td>Simple, always correct</td>
+</tr>
+<tr>
+<td><strong>Divide &amp; Conquer</strong></td>
+<td>Sorting, searching</td>
+<td>O(n log n) typical</td>
+<td>O(log n) to O(n)</td>
+<td>Efficient, parallelizable</td>
+</tr>
+<tr>
+<td><strong>Dynamic Programming</strong></td>
+<td>Optimization problems</td>
+<td>Polynomial</td>
+<td>O(n) to O(n²)</td>
+<td>Avoids recomputation</td>
+</tr>
+<tr>
+<td><strong>Hashing</strong></td>
+<td>Data integrity, passwords</td>
+<td>O(1) average</td>
+<td>O(n)</td>
+<td>Fast lookup, secure</td>
+</tr>
+<tr>
+<td><strong>Randomized</strong></td>
+<td>Avoiding worst case</td>
+<td>Average case optimal</td>
+<td>Varies</td>
+<td>Simple, fast on average</td>
+</tr>
+<tr>
+<td><strong>Recursive</strong></td>
+<td>Tree/graph problems</td>
+<td>Varies</td>
+<td>O(n) stack space</td>
+<td>Clean, elegant code</td>
+</tr>
+<tr>
+<td><strong>Sorting</strong></td>
+<td>Data organization</td>
+<td>O(n log n) to O(n²)</td>
+<td>O(1) to O(n)</td>
+<td>Enables fast searching</td>
+</tr>
+<tr>
+<td><strong>Greedy</strong></td>
+<td>Optimization problems</td>
+<td>O(n log n) typical</td>
+<td>O(1) to O(n)</td>
+<td>Fast, simple solutions</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2>Conclusion</h2>
+<p>Each algorithm design technique has its own strengths and weaknesses:</p>
+<ul>
+<li>Use <strong>Brute Force</strong> for learning and small-scale problems</li>
+<li>Use <strong>Divide and Conquer</strong> for problems that can be broken into independent subproblems</li>
+<li>Use <strong>Dynamic Programming</strong> when you have overlapping subproblems</li>
+<li>Use <strong>Hashing</strong> for fast data retrieval and integrity checking</li>
+<li>Use <strong>Randomized Algorithms</strong> to avoid worst-case scenarios</li>
+<li>Use <strong>Recursion</strong> for naturally recursive problems like trees and graphs</li>
+<li>Use <strong>Sorting</strong> as a preprocessing step for many algorithms</li>
+<li>Use <strong>Greedy</strong> when local optimal choices lead to global optimum</li>
+</ul>
+<p>Understanding when to apply each technique is crucial for efficient problem-solving in computer science and software development.</p>
+<hr />
+<h2>References</h2>
+<p>This summary was compiled from group presentations on various algorithm topics, including contributions from:
+- Group 1: Brute Force Algorithms
+- Group 2: Recursive Algorithms
+- Group 3: Divide and Conquer Algorithms
+- Group 4: Dynamic Programming Algorithms
+- Group 5: Greedy Algorithms
+- Group 7: Randomized Algorithms
+- Group 8: Sorting Algorithms
+- Group 10: Hashing Algorithms</p>
+<p><strong>Additional Sources:</strong>
+- GeeksforGeeks: "Introduction to Dynamic Programming" (2025)
+- ChatGPT (GPT-5), OpenAI (2025, November 11)</p>
+<hr />
+<p><strong>Document Created:</strong> November 26, 2025<br />
+<strong>Total Algorithms Covered:</strong> 8 major algorithm design techniques<br />
+<strong>Total Pages in Source Material:</strong> 9 PDF files</p>
+</body>
+</html>
